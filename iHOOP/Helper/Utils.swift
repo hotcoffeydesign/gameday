@@ -762,7 +762,7 @@ extension Utils{
 extension Double{
     
     var roundedTwoDigit:Int32{
-        mutating  let val = self
+        let val = self
         
         return Int32(Darwin.round(100*val)/100)
         
