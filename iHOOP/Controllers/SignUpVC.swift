@@ -19,8 +19,6 @@ class SignUpVC: BaseViewController,APIManagerDelegate {
     @IBOutlet weak var tf_ConfirmPassword:UITextField!
     @IBOutlet var btnLogin: UIButton!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -48,7 +46,7 @@ class SignUpVC: BaseViewController,APIManagerDelegate {
         popController(sender)
     }
 }
-extension SignUpVC{
+extension SignUpVC {
     func validate() -> (isSuccess : Bool, message : String){
         var success = false
         var msg = ""
@@ -98,6 +96,7 @@ extension SignUpVC{
         
         APIManager.sharedManager.call_postAPI(dataDict: param, action: ApiConstant.ApiAction.kSignup)
     }
+    
     func compilation_Success(data: Any, check: String!) {
         if check == ApiConstant.ApiAction.kSignup
         {

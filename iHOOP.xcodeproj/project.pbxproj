@@ -41,7 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		042616A62297BDA4000C4C4F /* iHOOP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iHOOP.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		042616A62297BDA4000C4C4F /* GAMEDAY Vibes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GAMEDAY Vibes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		042616A92297BDA4000C4C4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		042616AB2297BDA4000C4C4F /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		042616AE2297BDA4000C4C4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -105,7 +105,7 @@
 		042616A72297BDA4000C4C4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				042616A62297BDA4000C4C4F /* iHOOP.app */,
+				042616A62297BDA4000C4C4F /* GAMEDAY Vibes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,7 +234,7 @@
 			);
 			name = iHOOP;
 			productName = iHOOP;
-			productReference = 042616A62297BDA4000C4C4F /* iHOOP.app */;
+			productReference = 042616A62297BDA4000C4C4F /* GAMEDAY Vibes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -525,7 +525,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = starTrak.child.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "GAMEDAY Vibes";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHOOP/Helper/Circularmenu/iHOOP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -549,7 +549,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = starTrak.child.app;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "GAMEDAY Vibes";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHOOP/Helper/Circularmenu/iHOOP-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;

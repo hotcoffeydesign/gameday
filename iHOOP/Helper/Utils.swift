@@ -618,7 +618,7 @@ extension Utils{
     }
     
     class func AppName() -> String{
-        return "iHoop"
+        return "GAMEDAY Vibes"
     }
     
     class func directoryPathForLocalImages() -> URL {

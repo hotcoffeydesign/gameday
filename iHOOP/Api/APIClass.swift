@@ -27,7 +27,8 @@ extension APIManager{
     }
     
     func SendNetworkRequest(request_1: NetworkRequestResource, action_1:String!) {
-        Network.networkRequest(request_1){
+        
+        Network.networkRequest(request_1) {
             (resultState) in
             switch resultState {
             case .success(let baseModel):
@@ -39,6 +40,7 @@ extension APIManager{
             }
         }
     }
+    
     func call_postAPI(dataDict: [String:Any], action:String!) {
         let path1 = ServerManager.sharedManager.clientServer.path + action
         let request = NetworkRequestResource(path: path1, method: .post, param: dataDict)

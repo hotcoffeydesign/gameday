@@ -91,11 +91,12 @@ struct ServerConstants {
         }
     }
     
-    fileprivate struct clientPoductionServer{
+    fileprivate struct clientPoductionServer {
         static  var HostName:String {
-            return "http://18.191.152.224/iHoop/index.php/api/UserController/"
+//            return "http://18.191.152.224/iHoop/index.php/api/UserController/"
+            return "http://gametimevibes.com/iHoop/index.php/api/UserController/"
         }
-        static  var Domain: String{
+        static  var Domain: String {
             return "http://18.191.152.224/iHoop/index.php/api/UserController/"
         }
         static var fileDirectory: String{
