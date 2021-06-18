@@ -46,12 +46,12 @@ extension ForgotPasswordVC: APIManagerDelegate {
         print(data)
         if check == ApiConstant.ApiAction.kForgot
         {
-            guard let basemodal = Mapper<BaseModel<LoginModel>>().map(JSON: data as! [String : Any])else{
+            guard let basemodal = Mapper<BaseModel<LoginModel>>().map(JSON: data as! [String : Any]) else {
                 print("parsing error")
                 showAnnouncement(withMessage: LocalizedContants.App.Error.Network.Parser)
                 return
             }
-            if basemodal.isSuccess{
+            if basemodal.isSuccess {
                 self.showAnnouncement(withMessage: basemodal.msg ?? "")
             }
             else

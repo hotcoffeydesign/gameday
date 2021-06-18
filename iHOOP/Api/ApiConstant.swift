@@ -36,6 +36,7 @@ struct ApiConstant {
         static let kAddGame = "Sports/add_game"
         static let kaddseason = "Sports/add_season"
         static let kForgot = "Sports/forget_password"
+//        static let kForgot = "Sports/forget_password_post"
     }
     
     struct ApiKey {

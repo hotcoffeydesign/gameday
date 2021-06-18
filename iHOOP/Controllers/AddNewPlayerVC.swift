@@ -56,6 +56,7 @@ class AddNewPlayerVC: BaseViewController,UINavigationControllerDelegate, UIImage
     @IBAction func btn_NewplayerNotAdd( sender: UIButton){
         self.popController(sender)
     }
+    
     @IBAction func btn_AddNewPlayer( sender: UIButton){
         let valid = validate()
         if valid.isSuccess {

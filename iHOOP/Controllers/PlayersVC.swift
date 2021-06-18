@@ -107,10 +107,13 @@ extension PlayersVC: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tbl_Players.dequeueReusableCell(withIdentifier: "cell_tblPlayers", for: indexPath) as! cell_tblPlayers
+        
         let url = URL(string: "\(self.baseImgUrl)\(arr_players[indexPath.row].image ?? "")")
+        
         cell.lbl_playerRank.text = "#\(arr_players[indexPath.row].hashID ?? "")"
-        cell.lbl_playerName.text = "\(arr_players[indexPath.row].fname ?? "") \(arr_players[indexPath.section].lname ?? "")".capitalized
+        cell.lbl_playerName.text = "\(arr_players[indexPath.row].fname ?? "") \(arr_players[indexPath.row].lname ?? "")".capitalized
         cell.img_player.sd_setShowActivityIndicatorView(true)
         cell.img_player.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "NewLogo"), options: .scaleDownLargeImages, completed: nil)
         cell.btnViewSummery.tag = indexPath.row
