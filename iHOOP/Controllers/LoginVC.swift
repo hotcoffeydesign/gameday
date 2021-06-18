@@ -9,45 +9,57 @@
 import UIKit
 import ObjectMapper
 
-class LoginVC: BaseViewController {
+class LoginVC: BaseViewController{
     
     @IBOutlet weak var tf_UseName:UITextField!
     @IBOutlet weak var tf_Password:UITextField!
-    @IBOutlet var btnLogin: UIButton!
+    @IBOutlet weak var btnRemeberMe: UIButton!
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let textToBold = "Create an account"
-        let fullText = "New user? Create an account"
-        let attr = NSMutableAttributedString(string: fullText)
-        attr.addAttribute(NSAttributedString.Key.font, value: UIFont.boldSystemFont(ofSize: 13), range: NSMakeRange(fullText.count - textToBold.count, textToBold.count))
-        self.btnLogin.titleLabel?.attributedText = attr
-        
-        if SharedPreference.getUserData().token != nil{
-            self.gotoNextVC()
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        if UserDefaults.standard.value(forKey: "User") != nil &&  UserDefaults.standard.value(forKey: "pwd") != nil{
+            self.tf_UseName.text = UserDefaults.standard.value(forKey: "User") as? String
+            self.tf_Password.text = UserDefaults.standard.value(forKey: "pwd") as? String
+            self.btnRemeberMe.isSelected = true
+        }
+        self.hideNvigationBar()
+    }
+    
+    @IBAction func btnRemeberMeTouch(sender: UIButton){
+        btnRemeberMe.isSelected = !btnRemeberMe.isSelected
+        if sender.isSelected{
+            UserDefaults.standard.setValue(self.tf_UseName.text, forKey: "User")
+            UserDefaults.standard.setValue(self.tf_Password.text, forKey: "pwd")
+        }else{
+            UserDefaults.standard.removeObject(forKey: "User")
+            UserDefaults.standard.removeObject(forKey: "pwd")
         }
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        self.hideNvigationBar()
-    }
+    @IBAction func btnForgotPassword(sender: UIButton){
+        let vc  = MainClass.mainStoryboard.instantiateViewController(withIdentifier: "ForgotPasswordVC") as! ForgotPasswordVC
+        self.navigationController?.pushViewController(vc, animated: true)
+        
+       }
+       
     
     @IBAction func btn_NewUserCreateAnAccount( sender:UIButton){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "SignUpVC") as! SignUpVC
         self.navigationController?.pushViewController(vc, animated: true)
     }
-    
-    @IBAction func btn_LoginAction( sender:UIButton) {
-        
-        if (tf_UseName.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 1 {
-            showAnnouncement(withMessage: UseCaseMessage.validate.Empty.UserNameValid)
+    @IBAction func btn_LoginAction( sender:UIButton){
+        if (tf_UseName.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 1{
+            showAnnouncement(withMessage: "Please Enter Username")
         }
-        else if  (tf_Password.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 1 {
-            showAnnouncement(withMessage: UseCaseMessage.validate.Empty.passwordtextField)
+        else if  (tf_Password.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 1{
+            showAnnouncement(withMessage: "Please Enter Password")
         }
-        else if(tf_Password.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 6 {
-            showAnnouncement(withMessage: UseCaseMessage.validate.Validtext.PasswordShort)
+        else if(tf_Password.text?.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).count)! < 4{
+            showAnnouncement(withMessage: "Please Enter A Password of Minimum 4 Characters Length")
         }
         else{
             APIManager.sharedManager.apiManagerDelegate = self
@@ -66,13 +78,13 @@ extension LoginVC: APIManagerDelegate {
         
         if check == ApiConstant.ApiAction.kLogin
         {
-            guard let basemodal = Mapper<BaseModel<LoginModel>>().map(JSON: data as! [String : Any]) else {
+            guard let basemodal = Mapper<BaseModel<LoginModel>>().map(JSON: data as! [String : Any])else{
                 print("parsing error")
                 showAnnouncement(withMessage: LocalizedContants.App.Error.Network.Parser)
                 return
             }
-            
-            if basemodal.isSuccess {                
+            if basemodal.isSuccess{
+                
                 let userDetail: LoginModel = basemodal.object!
                 print(basemodal.object as Any)
                 SharedPreference.saveUserData(user: userDetail)
@@ -91,8 +103,30 @@ extension LoginVC: APIManagerDelegate {
         self.showServerErrorMessage(error_data: data)
     }
     
-    func gotoNextVC() {
+    func gotoNextVC(){
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PlayersVC") as! PlayersVC
         self.navigationController?.pushViewController(vc, animated: true)
+    }
+    
+}
+//[05/03/2020 2:07 PM] Krishna patel: rgb(240, 105, 57)
+
+//[05/03/2020 2:07 PM] Krishna patel: rgb(247, 149, 116)
+
+//[05/03/2020 2:07 PM] Krishna patel: rgb(238, 116, 75)
+extension UIView {
+    func layerGradient() {
+        let layer : CAGradientLayer = CAGradientLayer()
+        layer.frame.size = self.frame.size
+        layer.frame.origin = CGPoint(x: 0, y: 0)
+        layer.cornerRadius = CGFloat(frame.width / 20)
+
+        let color0 = UIColor(red:240.0/255, green:105.0/255, blue:57.0/255, alpha:0.5).cgColor
+        let color1 = UIColor(red:247.0/255, green:149.0/255, blue: 116.0/255, alpha:0.1).cgColor
+        let color2 = UIColor(red:238.0/255, green:116.0/255, blue: 75.0/255, alpha:0.1).cgColor
+        
+
+        layer.colors = [color0,color1,color2]
+        self.layer.insertSublayer(layer, at: 0)
     }
 }

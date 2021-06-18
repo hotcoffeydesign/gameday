@@ -425,4 +425,10 @@ extension UINavigationController{
   //     navigationController?.navigationBar.barTintColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1).withAlphaComponent(1.0)
         UINavigationBar.appearance().titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white]
     }
+    
+    func popToViewController(ofClass: AnyClass, animated: Bool = true) {
+       if let vc = viewControllers.last(where: { $0.isKind(of: ofClass) }) {
+         popToViewController(vc, animated: animated)
+       }
+     }
 }

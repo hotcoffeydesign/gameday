@@ -19,6 +19,9 @@ class SignUpVC: BaseViewController,APIManagerDelegate {
     @IBOutlet weak var tf_ConfirmPassword:UITextField!
     @IBOutlet var btnLogin: UIButton!
     
+    var welcome = false
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -43,44 +46,53 @@ class SignUpVC: BaseViewController,APIManagerDelegate {
     
     
     @IBAction func btn_AlreadyhaveAnAccount( sender: UIButton){
-        popController(sender)
+        if welcome == true{
+            let vc = MainClass.mainStoryboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+            addTransitionEffectForPopAndDismiss()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }else{
+            
+            self.popController(sender)
+        }
+        
     }
 }
-extension SignUpVC {
+extension SignUpVC{
     func validate() -> (isSuccess : Bool, message : String){
-        var success = false
+        var success = true
         var msg = ""
         
         if tf_FName.isEmpty(){
+            success = false
             msg = UseCaseMessage.validate.Empty.fnametextField
         }
         else if tf_LName.isEmpty(){
+            success = false
             msg = UseCaseMessage.validate.Empty.lnametextField
         }
         else if tf_UserName.isEmpty(){
+            success = false
             msg = UseCaseMessage.validate.Empty.UserNameValid
         }
         else if tf_Email.isEmpty(){
+            success = false
             msg = UseCaseMessage.validate.Empty.emailtextField
         }
         else if !tf_Email.isValidEmail(){
+            success = false
             msg = UseCaseMessage.validate.Validtext.emailtextfield
         }
         else if tf_Password.isEmpty(){
+            success = false
             msg = UseCaseMessage.validate.Empty.passwordtextField
         }
-        else if (tf_Password.text?.trim().count)! < 6
-        {
-            msg = UseCaseMessage.validate.Validtext.PasswordShort
-        }
         else if tf_ConfirmPassword.isEmpty(){
+            success = false
             msg = UseCaseMessage.validate.Empty.cnfrmpasswordtextField
         }
         else if tf_ConfirmPassword.text != tf_Password.text{
+            success = false
             msg = UseCaseMessage.validate.Validtext.confirmpasswordtextfield
-        }
-        else {
-            success = true
         }
         
         return (isSuccess: success , message : msg)
@@ -96,7 +108,6 @@ extension SignUpVC {
         
         APIManager.sharedManager.call_postAPI(dataDict: param, action: ApiConstant.ApiAction.kSignup)
     }
-    
     func compilation_Success(data: Any, check: String!) {
         if check == ApiConstant.ApiAction.kSignup
         {
@@ -106,8 +117,15 @@ extension SignUpVC {
                 return
             }
             if basemodal.isSuccess{
-                showAnnouncement(withMessage: UseCaseMessage.notify.SignUpSuccessful, closer: {
+                showAnnouncement(withMessage: basemodal.msg ?? "", closer: {
+                    if self.welcome == true{
+                        let vc = MainClass.mainStoryboard.instantiateViewController(withIdentifier: "LoginVC") as! LoginVC
+                        self.addTransitionEffectForPopAndDismiss()
+                        self.navigationController?.pushViewController(vc, animated: true)
+                    }else{
+                        
                     self.navigationController?.popViewController(animated: true)
+                    }
                 })
             }
             else

@@ -85,6 +85,7 @@ class Network  {
         }*/
         if SharedPreference.getUserData().token != nil{
             headers["token"] = "\(SharedPreference.getUserData().token ?? "")".replacingOccurrences(of: "Optional(", with: "").replacingOccurrences(of: ")", with: "")
+            print(headers)
         }
         
         self.sharedAlamofire.request(path, method: method, parameters: param, encoding: URLEncoding.default, headers: headers).responseJSON { (response:DataResponse<Any>) in

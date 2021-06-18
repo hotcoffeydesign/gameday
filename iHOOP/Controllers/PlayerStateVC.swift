@@ -10,8 +10,7 @@ import UIKit
 //import PathMenu
 import ObjectMapper
 
-extension PlayerStateVC: ADCircularMenuDelegate
-{
+extension PlayerStateVC{
     func adCircularMenuClickedButton(at buttonIndex: Int32) {
         print("Clicked at : \(buttonIndex)")
         if buttonIndex == 0{
@@ -41,7 +40,8 @@ class PlayerStateVC: BaseViewController, cancel_ok_handle {
         
     }
     func ok_handle() {
-        self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popToViewController(ofClass: GameSeasonVC.self)
+//        self.navigationController?.popViewController(animated: true)
     }
     
     
@@ -50,9 +50,15 @@ class PlayerStateVC: BaseViewController, cancel_ok_handle {
     @IBOutlet weak var img_player:UIImageView!
     @IBOutlet weak var lbl_playerName:UILabel!
     @IBOutlet weak var lbl_playerRank:UILabel!
-    
-    var playerDetail: PlayerDetail!
+    var playerName = ""
+    var hasid = ""
+    var playerDetail: PlayerDetail?
     var baseImgUrl = ""
+    var sGame = false
+    var playedid = ""
+    var gameid = ""
+    var seasonid = ""
+    var btnBackTitle = ""
     
     var DefReb_Count = 0
     var OffReb_Count = 0
@@ -69,56 +75,46 @@ class PlayerStateVC: BaseViewController, cancel_ok_handle {
     
     var WinLoss = 0
     var arrTableData = [String]()
-    
+    var refrence: String?
+    var arrValue = [String]()
     @IBOutlet var tblRecord: UITableView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.setupRight()
-        self.LeftBackButotn()
-        
-        
-        let url = URL(string: "\(self.baseImgUrl)\(playerDetail.image ?? "")")
-        self.lbl_playerRank.text = "# \(playerDetail.hashID.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: " ", with: ""))"
-        self.lbl_playerName.text = "\(playerDetail.fname ?? "") \(playerDetail.lname ?? "")".capitalized
-        self.img_player.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "player_grey_right"), options: .scaleDownLargeImages, completed: nil)
+        self.hideNvigationBar()
     }
 
-    func setupRight(){
-        let menuBtn = UIButton(frame: CGRect(x: 0, y: 0, width: 32, height: 32))
-        // menuBtn.setImage(left , for: .normal)
-        menuBtn.setImage(#imageLiteral(resourceName: "menu_black"), for: .normal)
-        menuBtn.addTarget(self, action: #selector(OpenMenu), for: .touchUpInside)
-        let menuBarItem = UIBarButtonItem()
-        menuBarItem.customView = menuBtn
-        self.navigationItem.rightBarButtonItem = menuBarItem
-    }
-    @objc func OpenMenu()
-    {
-        let arrImageName = ["summary_btn", "exit_btn"]
-        
-        self.circularMenu = ADCircularMenu(menuButtonImageNameArray: arrImageName, andCornerButtonImageName: "btnMenuCorner", andShouldAddStatusBarMargin: true)
-        self.circularMenu.delegateCircularMenu = self
-        self.circularMenu.show()
-    }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.title = "PLAYER STATE"
-        //self.hideNvigationBar()
     }
     
+    @IBAction func btExitTouch(sender: UIButton){
+        let popVC = MainClass.mainStoryboard.instantiateViewController(withIdentifier: "PopUpVC") as! PopUpVC
+        popVC.delegate_cancel_ok = self
+        if arrTableData.count > 0
+        {
+            popVC.tempTitle = "Are you sure you want to exit without saving the game?"
+        }
+        else{
+            popVC.tempTitle = "Are you sure you want to exit?"
+        }
+        popVC.modalPresentationStyle = .overCurrentContext
+        self.present(popVC, animated: false, completion: nil)
+    }
     
+    @IBAction func btnUndoTouch(sender: UIButton){
+        self.undoValue()
+    }
     
-   
     func Win_Loss_API_Call() {
         // Log out
         APIManager.sharedManager.apiManagerDelegate = self
         var param = [String:Any]()
         //param[ApiConstant.ApiKey.ktoken] = SharedPreference.getUserData().token
         
-        param[ApiConstant.saveGameKeys.kPlayerID] = playerDetail.player_id!
+        param[ApiConstant.saveGameKeys.kPlayerID] = self.playedid
         param[ApiConstant.saveGameKeys.kOnePtHit] = OnePT_Plus_Count
         param[ApiConstant.saveGameKeys.kOnePtMiss] = OnePT_Minus_Count
         param[ApiConstant.saveGameKeys.kTwoPtHit] = TwoPT_Plus_Count
@@ -132,6 +128,8 @@ class PlayerStateVC: BaseViewController, cancel_ok_handle {
         param[ApiConstant.saveGameKeys.kAssist] = Asst_Count
         param[ApiConstant.saveGameKeys.kBlock] = Block_Count
         param[ApiConstant.saveGameKeys.kWinLoss] = WinLoss
+        param[ApiConstant.ApiKey.kseason_id] = self.seasonid
+        param[ApiConstant.ApiKey.kgame_id] = self.gameid
         APIManager.sharedManager.call_postAPI(dataDict: param, action: ApiConstant.ApiAction.kAddGameResult)
     }
     
@@ -153,34 +151,55 @@ class PlayerStateVC: BaseViewController, cancel_ok_handle {
             self.showAnnouncement(withMessage: "Please add some records to proceed")
         }
     }
+    @IBAction func draw_Touch()    {
+        
+           if arrTableData.count > 0
+           {
+               WinLoss = 2
+               self.Win_Loss_API_Call()
+           }else{
+               self.showAnnouncement(withMessage: "Please add some records to proceed")
+           }
+       }
    
     @IBAction func Def_Reb_Touch()    {
+        arrValue.append("DefReb_Count")
+     
         DefReb_Count += 1
         //arrTableData.insert("dreb :,(\(DefReb_Count)),black", at: 0)
         arrTableData.append("dreb:,(\(DefReb_Count)),black")
         self.refreshTableView()
     }
     @IBAction func Off_Reb_Touch()    {
+        arrValue.append("OffReb_Count")
+ 
         OffReb_Count += 1
         arrTableData.append("oreb:,(\(OffReb_Count)),black")
         self.refreshTableView()
     }
     @IBAction func To_Touch()    {
+        arrValue.append("To_Touch")
         To_Count += 1
         arrTableData.append("to:,(\(To_Count)),black")
         self.refreshTableView()
     }
     @IBAction func Stl_Touch()    {
+        arrValue.append("Stl_Count")
+        
         Stl_Count += 1
         arrTableData.append("stl:,(\(Stl_Count)),black")
         self.refreshTableView()
     }
     @IBAction func Asst_Touch()    {
+        arrValue.append("Asst_Count")
+       
         Asst_Count += 1
         arrTableData.append("ast:,(\(Asst_Count)),black")
         self.refreshTableView()
     }
     @IBAction func Block_Touch()    {
+        arrValue.append("Block_Count")
+       
         Block_Count += 1
         arrTableData.append("blk:,(\(Block_Count)),black")
         self.refreshTableView()
@@ -188,38 +207,84 @@ class PlayerStateVC: BaseViewController, cancel_ok_handle {
     
     
     @IBAction func ThreePT_Plus_Touch()    {
+        arrValue.append("ThreePT_Plus_Count")
         ThreePT_Plus_Count += 1
         arrTableData.append("3pt:,\(ThreePT_Plus_Count)-\(ThreePT_Plus_Count+ThreePT_Minus_Count) 3pt,green")
         self.refreshTableView()
     }
     @IBAction func ThreePT_Minus_Touch()    {
+        arrValue.append("ThreePT_Minus_Count")
         ThreePT_Minus_Count += 1
         arrTableData.append("3pt miss:,\(ThreePT_Plus_Count)-\(ThreePT_Plus_Count+ThreePT_Minus_Count) 3pt,red")
         self.refreshTableView()
     }
     @IBAction func TwoPT_Plus_Touch()    {
+        arrValue.append("TwoPT_Plus_Count")
+        refrence = "TwoPT_Plus_Count"
         TwoPT_Plus_Count += 1
         arrTableData.append("2pt:,\(TwoPT_Plus_Count)-\(TwoPT_Plus_Count+TwoPT_Minus_Count) fg,green")
         self.refreshTableView()
     }
     @IBAction func TwoPT_Minus_Touch()    {
+        arrValue.append("TwoPT_Minus_Count")
         TwoPT_Minus_Count += 1
         arrTableData.append("2pt miss:,\(TwoPT_Plus_Count)-\(TwoPT_Plus_Count+TwoPT_Minus_Count) fg,red")
         self.refreshTableView()
     }
     @IBAction func OnePT_Plus_Touch()    {
+        arrValue.append("OnePT_Plus_Count")
+        refrence = "OnePT_Plus_Count"
         OnePT_Plus_Count += 1
         arrTableData.append("1pt:,\(OnePT_Plus_Count)-\(OnePT_Plus_Count+OnePT_Minus_Count) ft,green")
         self.refreshTableView()
     }
     @IBAction func OnePT_Minus_Touch()    {
+        arrValue.append("OnePT_Minus_Count")
+        refrence = "OnePT_Minus_Count"
         OnePT_Minus_Count += 1
         arrTableData.append("1pt miss:,\(OnePT_Plus_Count)-\(OnePT_Plus_Count+OnePT_Minus_Count) ft,red")
         self.refreshTableView()
     }
+    
+    func undoValue(){
+        print("undo array \(arrValue)")
+        if arrTableData.count != 0 && arrTableData.count > 0{
+
+            if arrValue.last == "DefReb_Count"{
+               DefReb_Count -= 1
+            }else if arrValue.last == "OffReb_Count"{
+                OffReb_Count -= 1
+            }else if arrValue.last == "To_Touch"{
+                To_Count -= 1
+            }else if arrValue.last == "Stl_Count"{
+                Stl_Count -= 1
+            }else if arrValue.last == "Asst_Count"{
+                Asst_Count -= 1
+            }else if arrValue.last == "Block_Count"{
+                Block_Count -= 1
+            }else if arrValue.last == "ThreePT_Plus_Count"{
+                ThreePT_Plus_Count -= 1
+            }else if arrValue.last == "ThreePT_Minus_Count"{
+                ThreePT_Minus_Count -= 1
+            }else if arrValue.last == "TwoPT_Plus_Count"{
+                TwoPT_Plus_Count -= 1
+            }else if arrValue.last == "TwoPT_Minus_Count"{
+                TwoPT_Minus_Count -= 1
+            }else if arrValue.last == "OnePT_Plus_Count"{
+                OnePT_Plus_Count -= 1
+            }else if arrValue.last == "OnePT_Minus_Count"{
+                OnePT_Minus_Count -= 1
+            }
+            self.arrValue.removeLast()
+            self.arrTableData.removeLast()
+            self.tblRecord.reloadData()
+        }
+        
+    }
+    
     func refreshTableView()
     {
-        //self.tblRecord.reloadData()
+//        self.tblRecord.reloadData()
         self.tblRecord.beginUpdates()
         self.tblRecord.insertRows(at: [IndexPath.init(row: self.arrTableData.count-1, section: 0)], with: .automatic)
         self.tblRecord.endUpdates()
@@ -266,16 +331,12 @@ extension PlayerStateVC: UITableViewDelegate, UITableViewDataSource{
         cell.selectionStyle = .none
         return cell
     }
-    /*
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tblRecord.cellForRow(at: indexPath)
-        cell?.isSelected = false
-    }*/
     
 }
 extension PlayerStateVC: APIManagerDelegate{
     
     func compilation_Success(data: Any, check: String!) {
+        print(data)
         APIManager.sharedManager.apiManagerDelegate = self
         if check == ApiConstant.ApiAction.kAddGameResult
         {
@@ -286,7 +347,15 @@ extension PlayerStateVC: APIManagerDelegate{
             }
             if basemodal.isSuccess{
                 self.showAnnouncement(withMessage: "Record saved successfully"/*basemodal.msg!*/) {
-                    self.navigationController?.popViewController(animated: true)
+                    let vc = MainClass.mainStoryboard.instantiateViewController(withIdentifier: "GameSummeryVC") as! GameSummeryVC
+                    vc.playerName = self.playerName
+                    vc.hashId = self.hasid
+                    vc.btnBackTitle = self.btnBackTitle
+                    vc.player_id = self.playedid
+                    vc.game_id = self.gameid
+                    vc.sesionid = self.seasonid
+                    vc.Sgame = self.sGame
+                    self.navigationController?.pushViewController(vc, animated: true)
                 }
             }
             else{

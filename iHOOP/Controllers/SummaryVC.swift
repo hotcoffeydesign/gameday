@@ -42,7 +42,7 @@ class SummaryVC: BaseViewController {
         //print("playerDetail: \(playerDetail)")
         
         self.lbl_PlayerName.text = "\(playerDetail.fname ?? "") \(playerDetail.lname ?? "")".capitalized
-        self.lbl_PlayerHashID.text = "#\(playerDetail.hashID.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: " ", with: ""))"
+        self.lbl_PlayerHashID.text = "#\(playerDetail.hashID?.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: " ", with: ""))"
         
     }
     func setupBack(){
@@ -62,6 +62,7 @@ class SummaryVC: BaseViewController {
         var param = [String:Any]()
         param[ApiConstant.ApiKey.ktoken] = SharedPreference.getUserData().token
         param[ApiConstant.ApiKey.kPlayerID] = playerDetail.player_id
+       
     
         APIManager.sharedManager.call_postAPI(dataDict: param, action: ApiConstant.ApiAction.kplayerGamePoints)
     }
@@ -83,28 +84,28 @@ extension SummaryVC:APIManagerDelegate
                 playerSummery = basemodal.object
                 print(playerSummery)
                 
-                self.lbl_GamePlayed.text = playerSummery.TotalGame
+//                self.lbl_GamePlayed.text = "\(playerSummery.TotalGame ?? 0.0)"
                 self.lbl_MINIGame.text = "0"
-                let tempV = (CGFloat.init(Float.init(playerSummery.Three_Hit)!)+CGFloat.init(Float.init(playerSummery.FT_Hit)!)+CGFloat.init(Float.init(playerSummery.FG_Hit)!))/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_PSTGame.text = String(format:"%.01f", tempV)
-                self.lbl_3Pt_MadeAtmpt.text = "\(playerSummery.Three_Hit ?? "") - \(playerSummery.Three_Hit.integerValue + playerSummery.Three_Mis.integerValue )"
-                self.lbl_FT_MadeAtmpt.text = "\(playerSummery.FT_Hit ?? "") - \(playerSummery.FT_Hit.integerValue + playerSummery.FT_Mis.integerValue )"
-                self.lbl_FG_MadeAtmpt.text = "\(playerSummery.FG_Hit ?? "") - \(playerSummery.FG_Hit.integerValue + playerSummery.FG_Mis.integerValue )"
-                let tempV_0 = (CGFloat.init(Float.init(playerSummery.Off_Reb)!)+CGFloat.init(Float.init(playerSummery.Def_Reb)!))/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_REBSGame.text = String(format:"%.01f", tempV_0)
-                let tempV_1 = CGFloat.init(Float.init(playerSummery.Off_Reb)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_OFF_REBSGame.text = String(format:"%.01f", tempV_1)
-                let tempV_2 = CGFloat.init(Float.init(playerSummery.Def_Reb)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_DEF_REBSGame.text = String(format:"%.01f", tempV_2)
-                self.lbl_PFGame.text = "0"
-                let tempV_3 = CGFloat.init(Float.init(playerSummery.Stl_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_STLSGame.text = String(format:"%.01f", tempV_3)//playerSummery.Stl_Count
-                let tempV_4 = CGFloat.init(Float.init(playerSummery.To_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_TO_Game.text = String(format:"%.01f", tempV_4)//playerSummery.To_Count
-                let tempV_5 = CGFloat.init(Float.init(playerSummery.Block_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_BLKS_Game.text = String(format:"%.01f", tempV_5)//playerSummery.Block_Count
-                let tempV_6 = CGFloat.init(Float.init(playerSummery.Asst_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
-                self.lbl_ASSTSGame.text = String(format:"%.01f", tempV_6)//playerSummery.Asst_Count
+//                let tempV = (CGFloat.init(Float.init(playerSummery.Three_Hit)!)+CGFloat.init(Float.init(playerSummery.FT_Hit)!)+CGFloat.init(Float.init(playerSummery.FG_Hit)!))/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_PSTGame.text = String(format:"%.01f", tempV)
+//                self.lbl_3Pt_MadeAtmpt.text = "\(playerSummery.Three_Hit ?? "") - \(playerSummery.Three_Hit.integerValue + playerSummery.Three_Mis.integerValue )"
+//                self.lbl_FT_MadeAtmpt.text = "\(playerSummery.FT_Hit ?? "") - \(playerSummery.FT_Hit.integerValue + playerSummery.FT_Mis.integerValue )"
+//                self.lbl_FG_MadeAtmpt.text = "\(playerSummery.FG_Hit ?? "") - \(playerSummery.FG_Hit.integerValue + playerSummery.FG_Mis.integerValue )"
+//                let tempV_0 = (CGFloat.init(Float.init(playerSummery.Off_Reb)!)+CGFloat.init(Float.init(playerSummery.Def_Reb)!))/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_REBSGame.text = String(format:"%.01f", tempV_0)
+//                let tempV_1 = CGFloat.init(Float.init(playerSummery.Off_Reb)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_OFF_REBSGame.text = String(format:"%.01f", tempV_1)
+//                let tempV_2 = CGFloat.init(Float.init(playerSummery.Def_Reb)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_DEF_REBSGame.text = String(format:"%.01f", tempV_2)
+//                self.lbl_PFGame.text = "0"
+//                let tempV_3 = CGFloat.init(Float.init(playerSummery.Stl_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_STLSGame.text = String(format:"%.01f", tempV_3)//playerSummery.Stl_Count
+//                let tempV_4 = CGFloat.init(Float.init(playerSummery.To_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_TO_Game.text = String(format:"%.01f", tempV_4)//playerSummery.To_Count
+//                let tempV_5 = CGFloat.init(Float.init(playerSummery.Block_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_BLKS_Game.text = String(format:"%.01f", tempV_5)//playerSummery.Block_Count
+//                let tempV_6 = CGFloat.init(Float.init(playerSummery.Asst_Count)!)/CGFloat.init(Float.init(playerSummery.TotalGame)!)
+//                self.lbl_ASSTSGame.text = String(format:"%.01f", tempV_6)//playerSummery.Asst_Count
                 
             }
             else{

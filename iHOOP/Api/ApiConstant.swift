@@ -20,15 +20,22 @@ struct ApiConstant {
         
     }
     struct ApiAction {
-        static let kLogin = "login"
-        static let kSignup = "UserRegistration"
-        static let kLogout = "logout"
-        static let kaddPlayer = "addPlayer"
-        static let kUpdatePlayer = "updatePlayer"
-        static let kDeletePlayer = "deletePlayer"
-        static let kplayerList = "playerList"
-        static let kAddGameResult = "addGameOfaPlayer"
-        static let kplayerGamePoints = "playerGamePoints"
+        static let kLogin = "UserController/login"
+        static let kSignup = "UserController/UserRegistration"
+        static let kLogout = "UserController/logout"
+        static let kplayerList = "UserController/playerList"
+        static let kaddPlayer = "UserController/addPlayer"
+        static let kUpdatePlayer = "UserController/updatePlayer"
+        static let kDeletePlayer = "UserController/deletePlayer"
+        static let kgamelist = "Sports/game_list"
+        static let kseasonlist = "Sports/season_list"
+        static let kAddGameResult = "Sports/addGameOfaPlayer"
+        static let kseasondelete = "Sports/season_delete"
+        static let kgamesdelete = "Sports/game_delete"
+        static let kplayerGamePoints = "Sports/scoreBoard"
+        static let kAddGame = "Sports/add_game"
+        static let kaddseason = "Sports/add_season"
+        static let kForgot = "Sports/forget_password"
     }
     
     struct ApiKey {
@@ -41,6 +48,14 @@ struct ApiConstant {
         static let kpassword = "password"
         static let ktoken = "token"
         static let kimage = "image"
+        static let kgameName = "game_name"
+        static let kgameDate = "game_date"
+        static let kgame_id = "game_id"
+        static let kseason_id = "season_id"
+        static let kseasonName = "season_name"
+        static let kseasonDate = "season_date"
+        
+        
     }
     /*
     [{player_id","value":"210"},

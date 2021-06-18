@@ -35,10 +35,10 @@ struct UseCaseMessage {
     
     struct validate {
         struct Empty {
-            static let UserNameValid = "Please enter a UserName"
+            static let UserNameValid = "Please enter valid UserName"
             static let mobileInvalid = "Please enter valid contact number"
             static let emailtextField = "Please enter email address"
-            static let passwordtextField = "Please enter a password"
+            static let passwordtextField = "Please enter valid password"
             static let fnametextField = "Please enter first name"
             static let lnametextField = "Please enter last name"
             static let Code = "please your hashID No."//Jersey
@@ -47,6 +47,7 @@ struct UseCaseMessage {
             static let PasswordNotMatched = "Password not Matche"
             static let addresstextField = "Please enter first name"
             static let imageField = "Please select profile image"
+            static let newpasswordtextField = "Please enter new password"
             static let oldpasswordtextField = "Please enter old password"
             static let verificationCode = "Please enter 6 digit verification code"
             static let incorrectOTP = "Incorrect OTP!"
@@ -74,7 +75,7 @@ struct UseCaseMessage {
         {
             static let emailtextfield = "Please enter valid email address"
             static let passwordtextfield = "Password is too short"
-            static let PasswordShort = "Password is too short, please enter a password of minimum 6 characters length"
+            static let newPasswordShort = "Password is too short, password must be 6 digit"
             static let mobileNumber = "Please enter valid mobile Number"
             static let confirmpasswordtextfield = "Password doesn't match"
             static let typeMessage = "Type Message"

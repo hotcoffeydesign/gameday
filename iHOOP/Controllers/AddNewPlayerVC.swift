@@ -8,6 +8,7 @@
 
 import UIKit
 import ObjectMapper
+import SDWebImage
 
 protocol DataAddNewPlayerDelegate: class {
     func DataAddNewPlayer(Fname : String, lname: String, Rank:String, playerImg: UIImage)
@@ -19,6 +20,9 @@ class AddNewPlayerVC: BaseViewController,UINavigationControllerDelegate, UIImage
     @IBOutlet weak  var tf_LastName:UITextField!
     @IBOutlet weak  var tf_Rank:UITextField!
     @IBOutlet weak  var img_NewPlayerImage:UIImageView!
+    @IBOutlet weak var lblTitle: UILabel!
+    @IBOutlet weak var vwNavigation: UIView!
+    
     var Urlimage:URL!
     var picker = UIImagePickerController()
     
@@ -31,20 +35,21 @@ class AddNewPlayerVC: BaseViewController,UINavigationControllerDelegate, UIImage
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let url = URL(string: "http://18.191.152.224/iHoop/Assets/player-profile/default.png")
+        self.img_NewPlayerImage.sd_setImage(with: url, completed: nil)
+        self.vwNavigation.layerGradient()
         if API_type == addPlayer
         {
-            self.title = "ADD NEW PLAYER"
+            self.lblTitle.text = "ADD NEW PLAYER"
         }else // updatePlayer
         {
-            self.title = "UPDATE PLAYER"
+            self.lblTitle.text = "UPDATE PLAYER"
             let url = URL(string: "\(self.baseImgUrl)\(playerDetail.image ?? "")")
-            self.tf_Rank.text = "\(playerDetail.hashID.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: " ", with: ""))"
+            self.tf_Rank.text = "\(playerDetail.hashID?.replacingOccurrences(of: "#", with: "").replacingOccurrences(of: " ", with: "") ?? "")"
             self.tf_FirstName.text = "\(playerDetail.fname ?? "")".capitalized
             self.tf_LastName.text = "\(playerDetail.lname ?? "")".capitalized
-            self.img_NewPlayerImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "player_grey_right"), options: .scaleDownLargeImages, completed: nil)
+            self.img_NewPlayerImage.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "NewLogo"), options: .scaleDownLargeImages, completed: nil)
         }
-        //  self.hideNvigationBar()
         self.HideBackButton()
     }
     

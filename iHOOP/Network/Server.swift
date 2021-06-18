@@ -78,10 +78,10 @@ struct ServerConstants {
     }
     fileprivate struct clientSandBoxServer{
         static  var HostName:String {
-            return "http://192.168.1.133/iHoop/index.php/api/UserController/"
+            return "http://192.168.1.133/iHoop/index.php/api/"
         }
         static  var Domain: String{
-            return "http://192.168.1.133/iHoop/index.php/api/UserController/"
+            return "http://192.168.1.133/iHoop/index.php/api/"
         }
         static var fileDirectory: String{
             return "/INFO01/ihoop/uploads/owner_images/";
@@ -91,13 +91,15 @@ struct ServerConstants {
         }
     }
     
-    fileprivate struct clientPoductionServer {
+    fileprivate struct clientPoductionServer{
         static  var HostName:String {
-//            return "http://18.191.152.224/iHoop/index.php/api/UserController/"
-            return "http://gametimevibes.com/iHoop/index.php/api/UserController/"
+//            return "http://18.191.152.224/iHoop/index.php/api/"
+            return "http://gametimevibes.com/iHoop/index.php/api/"
         }
-        static  var Domain: String {
-            return "http://18.191.152.224/iHoop/index.php/api/UserController/"
+        static  var Domain: String{
+//            http://18.191.152.224/iHoop/index.php/api/
+//            return "http://18.191.152.224/iHoop/index.php/api/"
+            return "http://gametimevibes.com/iHoop/index.php/api/"            
         }
         static var fileDirectory: String{
             return "/INFO01/ihoop/uploads/owner_images/";

@@ -147,14 +147,14 @@ extension Utils {
     
     class func getDateFormate() -> DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "MM/dd/yyyy"
         dateFormatter.timeZone = TimeZone(abbreviation: "IST")!
         return dateFormatter
     }
     
     class func getUserDateFormate() -> DateFormatter {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd-MM-yyyy"
+        dateFormatter.dateFormat = "yyyy-MM-dd"
         dateFormatter.timeZone = TimeZone(abbreviation: "IST")!
         return dateFormatter
     }
@@ -312,7 +312,7 @@ extension Utils {
     class func setDateWithServerFormate(date:String) -> String {
         let dateFormatter = Utils.getUserDateFormate()
         let new = dateFormatter.date(from: date)
-        let servDate = Utils.getDateFormate().string(from: new!)
+        let servDate = Utils.getDateFormate().string(from: new ?? Date())
         print("sending To server \(servDate)")
         return servDate
     }
@@ -618,7 +618,7 @@ extension Utils{
     }
     
     class func AppName() -> String{
-        return "GAMEDAY Vibes"
+        return "GameDay Vibes"
     }
     
     class func directoryPathForLocalImages() -> URL {

@@ -32,16 +32,25 @@
 		042616E32297D4DC000C4C4F /* PlayersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042616E22297D4DC000C4C4F /* PlayersVC.swift */; };
 		042616E52297D9F3000C4C4F /* SignUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042616E42297D9F3000C4C4F /* SignUpVC.swift */; };
 		042616E7229804AC000C4C4F /* AddNewPlayerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042616E6229804AC000C4C4F /* AddNewPlayerVC.swift */; };
+		042AE4AC24119F1F006C5DD8 /* ForgotPasswordVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042AE4AB24119F1F006C5DD8 /* ForgotPasswordVC.swift */; };
 		042E1DB5229BFE2700287A41 /* PlayerStateVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 042E1DB4229BFE2700287A41 /* PlayerStateVC.swift */; };
 		04354B35229E4D0700BAE95A /* SummaryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04354B34229E4D0700BAE95A /* SummaryVC.swift */; };
 		04354B37229E5FDC00BAE95A /* AnimatedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04354B36229E5FDC00BAE95A /* AnimatedVC.swift */; };
+		04865A7824143C0700F0E5C2 /* AddGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04865A7724143C0700F0E5C2 /* AddGameVC.swift */; };
+		04865A7A241473AC00F0E5C2 /* GameSummeryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04865A79241473AC00F0E5C2 /* GameSummeryVC.swift */; };
+		04865A7C2414759E00F0E5C2 /* AddseasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04865A7B2414759E00F0E5C2 /* AddseasonVC.swift */; };
+		04865A7E24148AC100F0E5C2 /* SeasonGameVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04865A7D24148AC100F0E5C2 /* SeasonGameVC.swift */; };
+		04A46AE42412DFA000033C5C /* SeasonSummeryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A46AE32412DFA000033C5C /* SeasonSummeryVC.swift */; };
+		04A46AE624131BC000033C5C /* GameSeasonVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A46AE524131BC000033C5C /* GameSeasonVC.swift */; };
+		04B4CBBD241188D400E75CC6 /* WelcomeVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4CBBC241188D400E75CC6 /* WelcomeVC.swift */; };
+		04B4CBBF24118C2700E75CC6 /* PueoTextFild.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04B4CBBE24118C2700E75CC6 /* PueoTextFild.swift */; };
 		04E9508822A1000700BB9CB0 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04E9508722A1000700BB9CB0 /* PopUpVC.swift */; };
 		04F4D823229FEA07004C01DF /* ADCircularMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F4D822229FEA07004C01DF /* ADCircularMenu.m */; };
 		7F5030E4C44023A9848B1CCA /* Pods_iHOOP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 802F7F785E47509B3B6A39D6 /* Pods_iHOOP.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		042616A62297BDA4000C4C4F /* GAMEDAY Vibes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GAMEDAY Vibes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		042616A62297BDA4000C4C4F /* GameDay Vibes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GameDay Vibes.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		042616A92297BDA4000C4C4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		042616AB2297BDA4000C4C4F /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		042616AE2297BDA4000C4C4F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -68,9 +77,18 @@
 		042616E22297D4DC000C4C4F /* PlayersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersVC.swift; sourceTree = "<group>"; };
 		042616E42297D9F3000C4C4F /* SignUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpVC.swift; sourceTree = "<group>"; };
 		042616E6229804AC000C4C4F /* AddNewPlayerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewPlayerVC.swift; sourceTree = "<group>"; };
+		042AE4AB24119F1F006C5DD8 /* ForgotPasswordVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordVC.swift; sourceTree = "<group>"; };
 		042E1DB4229BFE2700287A41 /* PlayerStateVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerStateVC.swift; sourceTree = "<group>"; };
 		04354B34229E4D0700BAE95A /* SummaryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryVC.swift; sourceTree = "<group>"; };
 		04354B36229E5FDC00BAE95A /* AnimatedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimatedVC.swift; sourceTree = "<group>"; };
+		04865A7724143C0700F0E5C2 /* AddGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGameVC.swift; sourceTree = "<group>"; };
+		04865A79241473AC00F0E5C2 /* GameSummeryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSummeryVC.swift; sourceTree = "<group>"; };
+		04865A7B2414759E00F0E5C2 /* AddseasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddseasonVC.swift; sourceTree = "<group>"; };
+		04865A7D24148AC100F0E5C2 /* SeasonGameVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonGameVC.swift; sourceTree = "<group>"; };
+		04A46AE32412DFA000033C5C /* SeasonSummeryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonSummeryVC.swift; sourceTree = "<group>"; };
+		04A46AE524131BC000033C5C /* GameSeasonVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSeasonVC.swift; sourceTree = "<group>"; };
+		04B4CBBC241188D400E75CC6 /* WelcomeVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVC.swift; sourceTree = "<group>"; };
+		04B4CBBE24118C2700E75CC6 /* PueoTextFild.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PueoTextFild.swift; sourceTree = "<group>"; };
 		04E9508722A1000700BB9CB0 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		04F4D820229FEA06004C01DF /* iHOOP-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "iHOOP-Bridging-Header.h"; sourceTree = "<group>"; };
 		04F4D821229FEA07004C01DF /* ADCircularMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ADCircularMenu.h; sourceTree = "<group>"; };
@@ -105,7 +123,7 @@
 		042616A72297BDA4000C4C4F /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				042616A62297BDA4000C4C4F /* GAMEDAY Vibes.app */,
+				042616A62297BDA4000C4C4F /* GameDay Vibes.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -184,8 +202,33 @@
 				042E1DB4229BFE2700287A41 /* PlayerStateVC.swift */,
 				04354B34229E4D0700BAE95A /* SummaryVC.swift */,
 				04354B36229E5FDC00BAE95A /* AnimatedVC.swift */,
+				04B4CBBE24118C2700E75CC6 /* PueoTextFild.swift */,
+				04B4CBBC241188D400E75CC6 /* WelcomeVC.swift */,
+				042AE4AB24119F1F006C5DD8 /* ForgotPasswordVC.swift */,
+				04865A7624143BC800F0E5C2 /* Game */,
+				04A46AE22412DF7C00033C5C /* Season */,
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		04865A7624143BC800F0E5C2 /* Game */ = {
+			isa = PBXGroup;
+			children = (
+				04865A7724143C0700F0E5C2 /* AddGameVC.swift */,
+				04865A79241473AC00F0E5C2 /* GameSummeryVC.swift */,
+			);
+			path = Game;
+			sourceTree = "<group>";
+		};
+		04A46AE22412DF7C00033C5C /* Season */ = {
+			isa = PBXGroup;
+			children = (
+				04A46AE32412DFA000033C5C /* SeasonSummeryVC.swift */,
+				04A46AE524131BC000033C5C /* GameSeasonVC.swift */,
+				04865A7B2414759E00F0E5C2 /* AddseasonVC.swift */,
+				04865A7D24148AC100F0E5C2 /* SeasonGameVC.swift */,
+			);
+			path = Season;
 			sourceTree = "<group>";
 		};
 		04F4D81F229FE9EA004C01DF /* Circularmenu */ = {
@@ -234,7 +277,7 @@
 			);
 			name = iHOOP;
 			productName = iHOOP;
-			productReference = 042616A62297BDA4000C4C4F /* GAMEDAY Vibes.app */;
+			productReference = 042616A62297BDA4000C4C4F /* GameDay Vibes.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -343,25 +386,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				04E9508822A1000700BB9CB0 /* PopUpVC.swift in Sources */,
+				04B4CBBF24118C2700E75CC6 /* PueoTextFild.swift in Sources */,
 				042616DC2297BF05000C4C4F /* ApiConstant.swift in Sources */,
 				04354B35229E4D0700BAE95A /* SummaryVC.swift in Sources */,
 				042616D72297BEC7000C4C4F /* Server.swift in Sources */,
+				04865A7A241473AC00F0E5C2 /* GameSummeryVC.swift in Sources */,
 				042616D82297BEC7000C4C4F /* Debug.swift in Sources */,
+				04865A7C2414759E00F0E5C2 /* AddseasonVC.swift in Sources */,
 				04354B37229E5FDC00BAE95A /* AnimatedVC.swift in Sources */,
 				042616D62297BEC7000C4C4F /* Network.swift in Sources */,
 				042616E02297BFEC000C4C4F /* BaseViewController.swift in Sources */,
+				04A46AE624131BC000033C5C /* GameSeasonVC.swift in Sources */,
 				042616C82297BE81000C4C4F /* CustomExtensions.swift in Sources */,
 				042616E7229804AC000C4C4F /* AddNewPlayerVC.swift in Sources */,
 				042616AC2297BDA4000C4C4F /* LoginVC.swift in Sources */,
 				042616E52297D9F3000C4C4F /* SignUpVC.swift in Sources */,
+				04865A7824143C0700F0E5C2 /* AddGameVC.swift in Sources */,
 				042616C62297BE81000C4C4F /* Designable.swift in Sources */,
+				042AE4AC24119F1F006C5DD8 /* ForgotPasswordVC.swift in Sources */,
 				042616AA2297BDA4000C4C4F /* AppDelegate.swift in Sources */,
 				042616D52297BEC7000C4C4F /* Error.swift in Sources */,
 				042E1DB5229BFE2700287A41 /* PlayerStateVC.swift in Sources */,
 				042616DE2297BF05000C4C4F /* APIClass.swift in Sources */,
 				042616E32297D4DC000C4C4F /* PlayersVC.swift in Sources */,
 				042616CC2297BEA2000C4C4F /* LoginModel.swift in Sources */,
+				04865A7E24148AC100F0E5C2 /* SeasonGameVC.swift in Sources */,
+				04B4CBBD241188D400E75CC6 /* WelcomeVC.swift in Sources */,
 				042616C42297BE81000C4C4F /* Constants.swift in Sources */,
+				04A46AE42412DFA000033C5C /* SeasonSummeryVC.swift in Sources */,
 				042616C92297BE81000C4C4F /* DTTextField.swift in Sources */,
 				042616C52297BE81000C4C4F /* Utils.swift in Sources */,
 				042616CD2297BEA2000C4C4F /* BaseModelProtocol.swift in Sources */,
@@ -518,16 +570,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = U5HCFQ54ZD;
 				INFOPLIST_FILE = iHOOP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.infograins.starTrak.child.app;
-				PRODUCT_NAME = "GAMEDAY Vibes";
+				PRODUCT_NAME = "GameDay Vibes";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHOOP/Helper/Circularmenu/iHOOP-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -544,16 +594,14 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 10;
 				DEVELOPMENT_TEAM = U5HCFQ54ZD;
 				INFOPLIST_FILE = iHOOP/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.infograins.starTrak.child.app;
-				PRODUCT_NAME = "GAMEDAY Vibes";
+				PRODUCT_NAME = "GameDay Vibes";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "iHOOP/Helper/Circularmenu/iHOOP-Bridging-Header.h";
 				SWIFT_VERSION = 4.2;
