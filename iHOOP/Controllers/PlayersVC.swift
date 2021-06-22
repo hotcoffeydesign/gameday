@@ -162,7 +162,7 @@ extension PlayersVC: UITableViewDelegate, UITableViewDataSource {
             let vc = self.storyboard?.instantiateViewController(withIdentifier: "AddNewPlayerVC") as! AddNewPlayerVC
             //   vc.arrEditDetails = SharedPreference.getUserData().id
             //arr_players[indexPath.section]
-            vc.playerDetail = self.arr_players[indexPath.section]
+            vc.playerDetail = self.arr_players[indexPath.row]
             vc.baseImgUrl = self.baseImgUrl
             vc.API_type = "update"
             self.navigationController?.pushViewController(vc, animated: true)
