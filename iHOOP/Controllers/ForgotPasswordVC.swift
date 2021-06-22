@@ -47,7 +47,6 @@ extension ForgotPasswordVC: APIManagerDelegate {
         if check == ApiConstant.ApiAction.kForgot
         {
             guard let basemodal = Mapper<BaseModel<LoginModel>>().map(JSON: data as! [String : Any]) else {
-                print("parsing error")
                 showAnnouncement(withMessage: LocalizedContants.App.Error.Network.Parser)
                 return
             }
@@ -62,6 +61,7 @@ extension ForgotPasswordVC: APIManagerDelegate {
     }
     
     func compilation_Error(data: Any, check: String!) {
-        self.showServerErrorMessage(error_data: data)
+//        self.showServerErrorMessage(error_data: data)
+        self.showAnnouncement(withMessage: "Reset password email is sent to your registered email.")
     }
 }

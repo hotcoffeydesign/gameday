@@ -90,7 +90,6 @@ class Network  {
         
         self.sharedAlamofire.request(path, method: method, parameters: param, encoding: URLEncoding.default, headers: headers).responseJSON { (response:DataResponse<Any>) in
             
-            
             switch(response.result) {
             case .success(let JSON):
                 hudView.removeFromSuperview()

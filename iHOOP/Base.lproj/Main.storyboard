@@ -282,7 +282,7 @@
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell_tblPlayers" rowHeight="60" id="VMe-af-qhs" customClass="cell_tblPlayers" customModule="GameDay_Vibes" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="24.5" width="538" height="60"/>
+                                        <rect key="frame" x="0.0" y="24" width="538" height="60"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VMe-af-qhs" id="f4I-uc-Qnj">
                                             <rect key="frame" x="0.0" y="0.0" width="538" height="60"/>
